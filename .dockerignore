@@ -1,16 +1,16 @@
 **/node_modules
 **/dist
-**/.next
-**/.expo
 **/coverage
-**/.local-storage
-**/tsconfig.tsbuildinfo
 **/*.log
 **/.env
 **/.env.*
 !**/.env.example
+**/.local-storage
+**/tsconfig.tsbuildinfo
 .git
-# The mobile app is not built into images, but its manifest is needed so the workspace lockfile resolves.
-apps/mobile/*
-!apps/mobile/package.json
+.github
 docs
+deploy
+loadtest
+.zap
+test

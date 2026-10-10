@@ -5,4 +5,3 @@ resources: [../../base]
 # Image tags are set by .github/workflows/deploy.yml (kustomize edit set image ...).
 images:
   - { name: ghcr.io/OWNER/amora-api, newTag: latest }
-  - { name: ghcr.io/OWNER/amora-admin, newTag: latest }

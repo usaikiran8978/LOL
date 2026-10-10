@@ -1,6 +1,0 @@
-{
-  "CFBundleDisplayName": "amora",
-  "NSLocationWhenInUseUsageDescription": "Used to suggest your city and show approximate distance. Your exact location is never shown to others.",
-  "NSPhotoLibraryUsageDescription": "Used to add photos to your profile.",
-  "NSCameraUsageDescription": "Used to take photos for chat and for profile verification."
-}

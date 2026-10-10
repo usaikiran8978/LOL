@@ -37,7 +37,7 @@ Safety-related failures are always at least SEV2, because people may depend on t
 2. Contain: rotate the affected secrets (`JWT_ACCESS_SECRET` rotation signs out everyone; `SIGNING_SECRET`
    invalidates upload tokens and check-in codes; all admin sessions can be revoked with `UPDATE admin_sessions SET revoked_at = now() WHERE revoked_at IS NULL;`).
    To rotate `FIELD_ENCRYPTION_KEY`: deploy a new key with a bumped `FIELD_ENCRYPTION_KEY_VERSION`, list the old key in
-   `FIELD_ENCRYPTION_RETIRED_KEYS` (`<version>:<base64>`), run `npm run db:rotate-encryption -w @amora/api` until it
+   `FIELD_ENCRYPTION_RETIRED_KEYS` (`<version>:<base64>`), run `npm run db:rotate-encryption` until it
    reports 0, then remove the retired key (DEC-033).
 3. Review `audit_logs` and `admin_data_access_logs` for the window.
 4. Legal and privacy: GDPR requires notifying the supervisory authority within 72 hours of becoming aware of a

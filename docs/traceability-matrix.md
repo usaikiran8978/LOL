@@ -17,10 +17,10 @@ source; it is not a claim that it passed on the audit date.
 | `NOT DONE` | Not implemented. The Status cell says why. |
 
 **Column abbreviations:** Scr = mobile route under `apps/mobile/app/` (`M:`) / admin route under `apps/admin/src/app/(console)/` (`A:`);
-Tables = PostgreSQL tables (see `apps/api/migrations`); AE = analytics event; Sec = security/privacy requirement.
+Tables = PostgreSQL tables (see `migrations`); AE = analytics event; Sec = security/privacy requirement.
 API routes are shown with their `/v1` prefix (only `/health/*` and `/metrics` are unprefixed).
 
-**Test notation:** `e2e:<name>` = `apps/api/test/<name>.e2e-spec.ts` · `unit:<name>` = `apps/api/src/**/<name>.spec.ts` or `packages/shared/src/<name>.spec.ts` ·
+**Test notation:** `e2e:<name>` = `test/<name>.e2e-spec.ts` · `unit:<name>` = `src/**/<name>.spec.ts` or `packages/shared/src/<name>.spec.ts` ·
 `mt:<name>` = `apps/mobile/src/**/__tests__/<name>.test.tsx` or `apps/mobile/src/<dir>/<name>.test.ts` · `at:<name>` = `apps/admin/src/**/<name>.test.ts(x)`.
 Quoted text is the start of the real test title; `(n)` = number of tests in that `describe`/file for the feature.
 
@@ -360,7 +360,7 @@ Tables that exist but are not used by any code: `user_embeddings` (MAT-13); colu
 | Type | Evidence | Status |
 |---|---|---|
 | Unit | API: 17 spec files (age, TOTP, field encryption, geo, Redis throttler, engine, ranking, adaptive, search, answers, prompting, stats, Stripe signature, render, flags, profile-state, text/image moderation); shared: permissions, segments | DONE |
-| Integration / API (e2e against real Postgres) | 18 e2e suites in `apps/api/test` | DONE (gaps listed per row; notably Apple JWS, push/email/SMS adapters, several discovery surfaces, AI endpoints beyond coach/starters/translate/insights) |
+| Integration / API (e2e against real Postgres) | 18 e2e suites in `test` | DONE (gaps listed per row; notably Apple JWS, push/email/SMS adapters, several discovery surfaces, AI endpoints beyond coach/starters/translate/insights) |
 | Security | token tampering, refresh reuse, CSRF, permission denial, country scope, lockout, enumeration, append-only audit, injection containment, webhook signatures | DONE (CI DAST/CodeQL never run: NFR-15) |
 | Matching deterministic | unit:engine (10), unit:adaptive (3) | DONE |
 | Questionnaire rule | e2e:questionnaire (12), unit:answers (8) | DONE |
@@ -378,7 +378,7 @@ Tables that exist but are not used by any code: `user_embeddings` (MAT-13); colu
 
 ## Summary (audit of 2026-10-09)
 
-**Method.** Every row was re-verified on 2026-10-09 against the code (routes in `apps/api/src/modules/**/*.controller.ts`,
+**Method.** Every row was re-verified on 2026-10-09 against the code (routes in `src/modules/**/*.controller.ts`,
 services, seeds, migrations), the mobile routes/screens/API client, the admin routes/features, and the test sources.
 A row is DONE only where I found both the implementation and a test. **The test suites were not run during this audit**
 (other engineers are working in the apps); "test exists" means it is in the source, not that it passed today.

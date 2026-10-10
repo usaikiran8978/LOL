@@ -33,7 +33,7 @@ TECH §1 asks for *independent services*; TECH appendix says "Kubernetes only wh
 We satisfy both by building **one deployable with hard module boundaries**:
 
 - Every TECH §3 component is a NestJS module with its own folder, its own tables
-  (prefix-free but owned — see `apps/api/migrations`), and a public service interface.
+  (prefix-free but owned — see `migrations`), and a public service interface.
 - Modules talk to each other only through exported services or domain events on the
   internal event bus (`EventBus` → outbox table → queue). No module reads another module's tables.
 - Each module can be extracted into its own service later by swapping the in-process call for HTTP/queue

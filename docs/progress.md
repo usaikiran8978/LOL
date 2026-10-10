@@ -26,7 +26,7 @@ Phase order: MP §36 / TECH §24. Requirement-level status lives in `traceabilit
 | Mobile (`apps/mobile`) | 0 errors | 151 passed / 17 suites | — (Expo Go run on iOS simulator) |
 
 Database: 19 migrations, ~160 tables. The stack was run locally end to end (API + admin + iOS simulator) with demo data
-(`npm run db:seed-demo -w @amora/api`).
+(`npm run db:seed-demo`).
 
 ## Not exercised yet (honest list)
 - CI workflows (tests, audit, CodeQL, ZAP, image builds, deploy): the repository has no commits/remote, so they never ran.
@@ -39,7 +39,7 @@ Database: 19 migrations, ~160 tables. The stack was run locally end to end (API 
 ```bash
 npm install
 # Postgres 16 with pgvector optional (DEC-020); Redis optional (single-instance mode without it)
-cp apps/api/.env.example apps/api/.env            # fill secrets; S3_BUCKET=local for disk storage in development
+cp .env.example .env            # fill secrets; S3_BUCKET=local for disk storage in development
 cd apps/api && node --env-file=.env -r @swc-node/register scripts/migrate.ts && node --env-file=.env -r @swc-node/register scripts/seed.ts
 node --env-file=.env -r @swc-node/register scripts/seed-demo.ts   # optional demo admins + members
 node --env-file=.env -r @swc-node/register src/main.ts            # API  http://localhost:3000 (docs at /docs)

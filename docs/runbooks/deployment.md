@@ -6,12 +6,12 @@ Reference target: Kubernetes (DEC-023). Images are built once per commit and pro
 1. **Registry**: GHCR (`ghcr.io/<org>/amora-{api,migrate,admin}`), pushed by `.github/workflows/deploy.yml`.
 2. **Namespaces**: `amora-staging`, `amora-production`.
 3. **Secret `amora-api-env`** in each namespace, sourced from your secret manager (External Secrets / Sealed Secrets).
-   Do not commit it. Required keys (validated at boot by `apps/api/src/common/config/config.ts`, which **refuses to start**
+   Do not commit it. Required keys (validated at boot by `src/common/config/config.ts`, which **refuses to start**
    in production with dev adapters, insecure cookies, MFA off, rate limiting off, or no Redis/S3):
    `DATABASE_URL, REDIS_URL, JWT_ACCESS_SECRET, OTP_PEPPER, SIGNING_SECRET, FIELD_ENCRYPTION_KEY, EMAIL_PROVIDER=smtp, SMTP_URL,
    SMS_PROVIDER=twilio, TWILIO_*, S3_BUCKET, S3_REGION, ADMIN_COOKIE_SECURE=true, ADMIN_REQUIRE_MFA=true, CORS_ORIGINS,
    METRICS_TOKEN`, plus the provider keys you enable (Stripe, Apple/Google billing, FCM/APNs, LiveKit, AI providers,
-   Google/Apple/Facebook sign-in, Rekognition, OpenSearch). See `apps/api/.env.example`.
+   Google/Apple/Facebook sign-in, Rekognition, OpenSearch). See `.env.example`.
 4. **GitHub environments** `staging` and `production`: add required reviewers (production: at least two, from
    engineering + operations) and the secret `KUBE_CONFIG` (base64 kubeconfig for a namespace-scoped deploy account).
 5. **Ingress/TLS** is cluster-specific and not included: terminate TLS at the ingress, route `api.<domain>` → `amora-api:80`
