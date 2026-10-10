@@ -7,8 +7,8 @@ Reference target: Kubernetes (DEC-023). Images are built once per commit and pro
 2. **Namespaces**: `amora-staging`, `amora-production`.
 3. **Secret `amora-api-env`** in each namespace, sourced from your secret manager (External Secrets / Sealed Secrets).
    Do not commit it. Required keys (validated at boot by `src/common/config/config.ts`, which **refuses to start**
-   in production with dev adapters, insecure cookies, MFA off, rate limiting off, or no Redis/S3):
-   `DATABASE_URL, REDIS_URL, JWT_ACCESS_SECRET, OTP_PEPPER, SIGNING_SECRET, FIELD_ENCRYPTION_KEY, EMAIL_PROVIDER=smtp, SMTP_URL,
+   in production with dev adapters, insecure cookies, MFA off, rate limiting off, or no S3; Redis is optional on a single instance, required for 2+):
+   `DATABASE_URL, JWT_ACCESS_SECRET, OTP_PEPPER, SIGNING_SECRET, FIELD_ENCRYPTION_KEY, EMAIL_PROVIDER=smtp, SMTP_URL,
    SMS_PROVIDER=twilio, TWILIO_*, S3_BUCKET, S3_REGION, ADMIN_COOKIE_SECURE=true, ADMIN_REQUIRE_MFA=true, CORS_ORIGINS,
    METRICS_TOKEN`, plus the provider keys you enable (Stripe, Apple/Google billing, FCM/APNs, LiveKit, AI providers,
    Google/Apple/Facebook sign-in, Rekognition, OpenSearch). See `.env.example`.

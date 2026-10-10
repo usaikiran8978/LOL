@@ -120,7 +120,6 @@ const schema = z
     if (env.S3_BUCKET === 'memory') ctx.addIssue({ code: 'custom', path: ['S3_BUCKET'], message: 'memory storage is test-only' });
     if (env.OTP_DEV_STATIC_CODE) ctx.addIssue({ code: 'custom', path: ['OTP_DEV_STATIC_CODE'], message: 'static OTP is development-only' });
     if (env.S3_BUCKET === 'local') ctx.addIssue({ code: 'custom', path: ['S3_BUCKET'], message: 'local disk storage is development-only' });
-    if (!env.REDIS_URL) ctx.addIssue({ code: 'custom', path: ['REDIS_URL'], message: 'required in production (multi-instance realtime + rate limits)' });
     if (!env.S3_BUCKET) ctx.addIssue({ code: 'custom', path: ['S3_BUCKET'], message: 'required in production' });
   });
 
