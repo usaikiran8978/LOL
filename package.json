@@ -1,0 +1,21 @@
+{
+  "name": "amora-platform",
+  "private": true,
+  "description": "Global AI Dating & Relationship Platform — monorepo",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "npm run build -w @amora/shared && npm run build -w @amora/api",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "db:migrate": "npm run db:migrate -w @amora/api",
+    "db:seed": "npm run db:seed -w @amora/api",
+    "dev:api": "npm run dev -w @amora/api"
+  }
+}

@@ -1,0 +1,5 @@
+/* Safety module: evidence lists and media previews (logical properties only — the console supports RTL). */
+.safety-evidence { list-style: none; padding-inline-start: 0; margin-block: 0; }
+.safety-gallery { list-style: none; padding-inline-start: 0; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.safety-thumb { display: block; max-inline-size: 240px; max-block-size: 240px; object-fit: contain; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); }
+.safety-evidence blockquote { margin-inline: 0; margin-block: 0.5rem; padding-inline-start: 0.75rem; border-inline-start: 3px solid var(--border); }

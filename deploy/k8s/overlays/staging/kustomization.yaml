@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: amora-staging
+resources: [../../base]
+# Image tags are set by .github/workflows/deploy.yml (kustomize edit set image ...).
+images:
+  - { name: ghcr.io/OWNER/amora-api, newTag: latest }
+  - { name: ghcr.io/OWNER/amora-admin, newTag: latest }
+patches:
+  - target: { kind: HorizontalPodAutoscaler, name: amora-api }
+    patch: |-
+      - { op: replace, path: /spec/minReplicas, value: 2 }
+      - { op: replace, path: /spec/maxReplicas, value: 4 }
+  - target: { kind: PodDisruptionBudget, name: amora-api }
+    patch: |-
+      - { op: replace, path: /spec/minAvailable, value: 1 }

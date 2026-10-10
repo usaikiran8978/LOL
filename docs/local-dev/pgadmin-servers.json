@@ -1,0 +1,14 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "Amora (local dev)",
+      "Group": "Amora",
+      "Host": "localhost",
+      "Port": 5432,
+      "MaintenanceDB": "amora_dev",
+      "Username": "amora",
+      "SSLMode": "prefer",
+      "DBRestriction": "amora_dev amora_test"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+# Local development stack. Production uses managed equivalents (see docs/architecture.md §8).
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: amora
+      POSTGRES_PASSWORD: amora
+      POSTGRES_DB: amora
+    ports: ["5433:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U amora"]
+      interval: 5s
+      retries: 10
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+    command: ["redis-server", "--appendonly", "yes"]
+  opensearch:
+    image: opensearchproject/opensearch:2
+    environment:
+      discovery.type: single-node
+      DISABLE_SECURITY_PLUGIN: "true"
+      OPENSEARCH_JAVA_OPTS: "-Xms512m -Xmx512m"
+    ports: ["9200:9200"]
+  minio:
+    image: minio/minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: amora
+      MINIO_ROOT_PASSWORD: amora-dev-secret
+    ports: ["9000:9000", "9001:9001"]
+  mailpit:
+    image: axllent/mailpit
+    ports: ["1025:1025", "8025:8025"]
+volumes:
+  pgdata:

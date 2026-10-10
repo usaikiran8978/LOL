@@ -1,0 +1,6 @@
+{
+  "CFBundleDisplayName": "amora",
+  "NSLocationWhenInUseUsageDescription": "يُستخدم لاقتراح مدينتك وعرض المسافة التقريبية. لا يتم عرض موقعك الدقيق للآخرين أبدًا.",
+  "NSPhotoLibraryUsageDescription": "يُستخدم لإضافة صور إلى ملفك الشخصي.",
+  "NSCameraUsageDescription": "يُستخدم لالتقاط الصور للمحادثات ولتوثيق الملف الشخصي."
+}

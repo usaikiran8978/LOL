@@ -1,0 +1,27 @@
+{
+  "name": "@amora/shared",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "jest --no-watchman"
+  },
+  "dependencies": {
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "typescript": "~6.0.3",
+    "jest": "^30.5.2",
+    "@swc/core": "^1.13.0",
+    "@swc/jest": "^0.2.39",
+    "@types/jest": "^30.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "transform": { "^.+\\.ts$": ["@swc/jest"] },
+    "testMatch": ["<rootDir>/src/**/*.spec.ts"]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "expo": {
+    "name": "LOL",
+    "slug": "amora",
+    "scheme": "amora",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "bundleIdentifier": "app.amora.mobile",
+      "supportsTablet": false,
+      "usesAppleSignIn": true
+    },
+    "android": {
+      "package": "app.amora.mobile",
+      "edgeToEdgeEnabled": true
+    },
+    "locales": {
+      "en": "./src/i18n/native/en.json",
+      "ar": "./src/i18n/native/ar.json"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-localization",
+      "expo-apple-authentication",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Used to suggest your city and show approximate distance. Your exact location is never shown to others."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Used to add photos to your profile.",
+          "cameraPermission": "Used to take photos for chat and for profile verification.",
+          "microphonePermission": false
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#FFFFFF",
+          "dark": {
+            "backgroundColor": "#121016"
+          }
+        }
+      ],
+      [
+        "expo-notifications",
+        {}
+      ],
+      "expo-font"
+    ],
+    "extra": {
+      "apiUrl": "http://localhost:3000"
+    }
+  }
+}

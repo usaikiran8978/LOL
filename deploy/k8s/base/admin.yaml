@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: amora-admin
+  labels: { app: amora-admin }
+spec:
+  replicas: 2
+  selector:
+    matchLabels: { app: amora-admin }
+  template:
+    metadata:
+      labels: { app: amora-admin }
+    spec:
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, seccompProfile: { type: RuntimeDefault } }
+      containers:
+        - name: admin
+          image: ghcr.io/OWNER/amora-admin:latest
+          ports: [{ containerPort: 3001, name: http }]
+          env:
+            # Server-side only: the Next server proxies /api/* to the API service inside the cluster.
+            - { name: API_URL, value: "http://amora-api" }
+          readinessProbe: { httpGet: { path: /login, port: http }, periodSeconds: 10 }
+          resources:
+            requests: { cpu: 100m, memory: 192Mi }
+            limits: { memory: 512Mi }
+          securityContext: { allowPrivilegeEscalation: false, capabilities: { drop: [ALL] } }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: amora-admin }
+spec:
+  selector: { app: amora-admin }
+  ports: [{ name: http, port: 80, targetPort: http }]

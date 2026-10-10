@@ -1,0 +1,10 @@
+# ZAP rule overrides (id<TAB>action<TAB>reason). Default: all alerts at WARN; FAIL on the ones below.
+40018	FAIL	SQL injection
+40012	FAIL	Cross-site scripting (reflected)
+40014	FAIL	Cross-site scripting (persistent)
+90019	FAIL	Server-side code injection
+90020	FAIL	Remote OS command injection
+6	FAIL	Path traversal
+7	FAIL	Remote file inclusion
+40046	FAIL	Server-side request forgery
+10098	IGNORE	Cross-domain misconfiguration: CORS is closed by default and only configured origins are allowed
