@@ -3,10 +3,14 @@
 **/.next
 **/.expo
 **/coverage
+**/.local-storage
+**/tsconfig.tsbuildinfo
 **/*.log
 **/.env
 **/.env.*
 !**/.env.example
 .git
-apps/mobile
+# The mobile app is not built into images, but its manifest is needed so the workspace lockfile resolves.
+apps/mobile/*
+!apps/mobile/package.json
 docs
