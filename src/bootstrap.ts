@@ -33,7 +33,7 @@ export async function createApp(config: AppConfig): Promise<INestApplication> {
   app.useWebSocketAdapter(new WsAdapter(app));
   app.enableShutdownHooks();
 
-  if (config.NODE_ENV !== 'production') {
+  if (config.NODE_ENV !== 'production' || config.API_DOCS_ENABLED) {
     const doc = SwaggerModule.createDocument(
       app,
       new DocumentBuilder().setTitle('LOL API').setDescription('LOL — Lot of Love: dating and relationship platform API.').setVersion('1').addBearerAuth().addCookieAuth('amora_admin').build(),

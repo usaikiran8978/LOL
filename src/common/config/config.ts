@@ -71,6 +71,8 @@ const schema = z
     REDIS_URL: z.string().optional(),
     // Observability: 'json' emits one structured access-log line per request; METRICS_TOKEN guards GET /metrics.
     LOG_FORMAT: z.enum(['json', 'text']).default('text'),
+    // Swagger UI at /docs. Always on outside production; opt-in in production.
+    API_DOCS_ENABLED: bool.default(false),
     METRICS_TOKEN: z.string().min(16).optional(),
     // HMAC key for chat upload tokens and other short-lived signed values.
     SIGNING_SECRET: z.string().min(32),
